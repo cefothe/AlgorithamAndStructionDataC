@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
 
 typedef struct  Node
 {
@@ -13,6 +14,7 @@ void deleteKey(int key, Node **tree);
 void print_tree(Node *tree);
 int countElement(Node *root);
 int countleaf(Node *root);
+int is_bal(Node *root);
 int max(int x,int y);
 int depth (Node *root);
 int _print_t(Node *tree, int is_left, int offset, int depth, char s[][255]);
@@ -171,4 +173,12 @@ int depth (Node *root)
 		return (1 + max(depth(root->left), depth(root->right)));
 	else return 0;
 
+}
+int is_bal(Node *root){
+	int k;
+	if(root!=NULL){
+	k = abs(depth(root->left)-depth(root->right));
+	return k<=1 && depth(root->left)&&depth(root->right);
+	}
+	else return 1;
 }
